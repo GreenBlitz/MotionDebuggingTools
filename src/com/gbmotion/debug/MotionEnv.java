@@ -14,6 +14,8 @@ public class MotionEnv {
 	
 	public double m_minX = Double.MAX_VALUE, m_minY = Double.MAX_VALUE, m_maxX = Double.MIN_VALUE, m_maxY = Double.MIN_VALUE;
 	
+	public boolean isDomainForced = false;
+	
 	private static String NT_PATH = "path";
 	public MotionEnv(){
 		m_points = new LinkedList<>();
@@ -26,11 +28,12 @@ public class MotionEnv {
 	}
 	
 	public void calculateMinMax(double x, double y){
-		m_minX = Math.min(m_minX, x - 0.125);
-		m_minY = Math.min(m_minY, y - 0.125);
-		m_maxX = Math.max(m_maxX, x + 0.125);
-		m_maxY = Math.max(m_maxY, y + 0.125);
-	
+		if (!isDomainForced){
+			m_minX = Math.min(m_minX, x - 0.125);
+			m_minY = Math.min(m_minY, y - 0.125);
+			m_maxX = Math.max(m_maxX, x + 0.125);
+			m_maxY = Math.max(m_maxY, y + 0.125);
+		}
 	}
 	
 	public static MotionEnv fromNetworkTable(){
