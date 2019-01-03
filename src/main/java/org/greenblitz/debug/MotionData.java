@@ -1,9 +1,8 @@
-package org.gbmotion.debug;
+package org.greenblitz.debug;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
-import java.net.NetworkInterface;
 import java.util.LinkedList;
 import java.util.List;
 

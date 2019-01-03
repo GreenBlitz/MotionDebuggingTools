@@ -1,4 +1,4 @@
-package org.gbmotion.debug;
+package org.greenblitz.debug;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

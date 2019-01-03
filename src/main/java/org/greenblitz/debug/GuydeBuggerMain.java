@@ -1,6 +1,6 @@
-package org.gbmotion.debug;
+package org.greenblitz.debug;
 
-public class GuyDebuggerMain {
+public class GuydeBuggerMain {
 
 	public static void main(String[] args) {
 		if (NTConnectionResolver.resolveRobotConnection()) {

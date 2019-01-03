@@ -1,4 +1,4 @@
-package org.gbmotion.debug;
+package org.greenblitz.debug;
 
 import java.awt.Color;
 import java.awt.Graphics;

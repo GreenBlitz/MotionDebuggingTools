@@ -1,4 +1,4 @@
-package org.gbmotion.debug;
+package org.greenblitz.debug;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 

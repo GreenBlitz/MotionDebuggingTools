@@ -1,0 +1,30 @@
+plugins {
+	id "java"
+	id "edu.wpi.first.GradleRIO" version "2018.06.21"
+	id "application"
+}
+
+mainClassName = "org.greenblitz.debug.GuydeBuggerMain"
+
+repositories {
+	jcenter()
+	mavenCentral()
+}
+
+dependencies {
+    compile 'edu.wpi.first.ntcore:ntcore-java:4.0.0'
+    testCompile 'edu.wpi.first.ntcore:ntcore-java:4.0.0'
+
+    compile 'edu.wpi.first.ntcore:ntcore-jni:4.0.0:all'
+    testcompile 'edu.wpi.first.ntcore:ntcore-jni:4.0.0:all'
+    // Yes, this looks weird, but here me out on this: there is a jar named ntcore-jni-4.0.0 but it's a trap, to get
+    //  the real jar with native dependencies you have to use ntcore-jni-4.0.0-all
+	
+	compile 'edu.wpi.first.wpiutil:wpiutil-java:3.0.0'
+    testCompile 'edu.wpi.first.wpiutil:wpiutil-java:3.0.0'
+}
+
+wrapper {
+	gradleVersion = '4.9'
+}
+
