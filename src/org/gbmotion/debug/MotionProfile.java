@@ -1,18 +1,19 @@
-package com.gbmotion.debug;
+package org.gbmotion.debug;
 
-import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class MotionProfile {
 	
-	private static final String NT_X = "locX",
-								NT_Y = "locY",
-								NT_ANGLE = "locAngle",
-								NT_POINT_IDX = "pointIdx",
-								NT_ENCODER_LEFT = "encLeft",
-								NT_ENCODER_RIGHT = "encRight",
-								NT_MOTOR_LEFT = "motorLeft",
-								NT_MOTOR_RIGHT = "motorRight",
-								NT_GYRO_ANGLE = "gyroAngle";
+	private static final String NT_X 				= "x",
+								NT_Y 				= "y",
+								NT_ANGLE 			= "heading",
+								NT_POINT_IDX 		= "pointIndex",
+								NT_ENCODER_LEFT 	= "encoderLeft",
+								NT_ENCODER_RIGHT 	= "encoderRight",
+								NT_MOTOR_LEFT 		= "motorLeft",
+								NT_MOTOR_RIGHT 		= "motorRight",
+								NT_GYRO_ANGLE 		= "gyroHeading";
 	
 	public static final MotionProfile loadString(String motionProfile){
 		String[] entries = motionProfile.split(",");
@@ -30,16 +31,16 @@ public class MotionProfile {
 	}
 	
 	public static final MotionProfile fromNetworkTables(){
-		NetworkTable motionTable = NetworkTable.getTable("motion");
-		double x = motionTable.getNumber(NT_X, 0);
-		double y = motionTable.getNumber(NT_Y, 0);
-		double encLeft = motionTable.getNumber(NT_ENCODER_LEFT, 0);
-		double encRight = motionTable.getNumber(NT_ENCODER_RIGHT, 0);
-		double angle = motionTable.getNumber(NT_ANGLE, 0);
-		int pointIdx = (int) motionTable.getNumber(NT_POINT_IDX, -1);
-		double motorLeft = motionTable.getNumber(NT_MOTOR_LEFT, 0);
-		double motorRight = motionTable.getNumber(NT_MOTOR_RIGHT, 0);
-		double gyroAngle = motionTable.getNumber(NT_GYRO_ANGLE, 0);
+		NetworkTable localizerTable = NetworkTableInstance.getDefault().getTable("motion)").getSubTable("localizer");
+		double x = localizerTable.getEntry(NT_X).getDouble(0);
+		double y = localizerTable.getEntry(NT_Y).getDouble(0);
+		double encLeft = localizerTable.getEntry(NT_ENCODER_LEFT).getDouble(0);
+		double encRight = localizerTable.getEntry(NT_ENCODER_RIGHT).getDouble(0);
+		double angle = localizerTable.getEntry(NT_ANGLE).getDouble(0);
+		int pointIdx = (int) localizerTable.getEntry(NT_POINT_IDX).getDouble(-1);
+		double motorLeft = localizerTable.getEntry(NT_MOTOR_LEFT).getDouble(0);
+		double motorRight = localizerTable.getEntry(NT_MOTOR_RIGHT).getDouble(0);
+		double gyroAngle = localizerTable.getEntry(NT_GYRO_ANGLE).getDouble(0);
 		return new MotionProfile(x,y,angle,pointIdx,encLeft,encRight,motorLeft,motorRight, gyroAngle);
 	}
 	

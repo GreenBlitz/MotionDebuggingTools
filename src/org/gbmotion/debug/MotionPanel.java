@@ -1,4 +1,4 @@
-package com.gbmotion.debug;
+package org.gbmotion.debug;
 
 import java.awt.Color;
 import java.awt.Graphics;

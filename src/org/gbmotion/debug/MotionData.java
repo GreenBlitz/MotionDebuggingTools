@@ -1,11 +1,12 @@
-package com.gbmotion.debug;
+package org.gbmotion.debug;
+
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.swing.JFrame;
-
-import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import javax.swing.*;
 
 public class MotionData {
 	
@@ -18,9 +19,7 @@ public class MotionData {
 	}
 	
 	public void run(int width, int height){
-		NetworkTable.setClientMode();
-		NetworkTable.setTeam(4590);
-
+		NetworkTableInstance.getDefault().setServerTeam(4590);
 		
 		MotionAnalyzingPanel panel = new MotionAnalyzingPanel();
 		panel.setSize(width - 2, height - 30);
@@ -31,14 +30,14 @@ public class MotionData {
 		//frame.setResizable(false);
 		panel.update();
 		frame.setContentPane(panel);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.pack();
 		
 		frame.setVisible(true);
-		NetworkTable motionTable = NetworkTable.getTable("motion");
+		NetworkTable motionTable = NetworkTableInstance.getDefault().getTable("motion");
 		while (true){
-			if (motionTable.getBoolean("isUpdated", false)){
-				motionTable.putBoolean("isUpdated", false);
+			if (motionTable.getEntry("isUpdated").getBoolean(false)){
+				motionTable.getEntry("isUpdated").setBoolean(false);
 				if (panel.m_env == null){
 					m_env = MotionEnv.fromNetworkTable();
 					panel.panel.m_robotPoints = new LinkedList<>();
@@ -50,9 +49,6 @@ public class MotionData {
 				panel.panel.addRobotLocation();
 				
 				panel.update();
-
-
-				
 			}
 			
 			frame.repaint();

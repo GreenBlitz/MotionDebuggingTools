@@ -1,10 +1,11 @@
-package com.gbmotion.debug;
+package org.gbmotion.debug;
 
+
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 
 import java.util.LinkedList;
 import java.util.List;
-
-import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 public class MotionEnv {
 	
@@ -37,12 +38,12 @@ public class MotionEnv {
 	}
 	
 	public static MotionEnv fromNetworkTable(){
-		NetworkTable motionTable = NetworkTable.getTable("motion");
-		int length = (int)motionTable.getNumber("pathLength", 0);
+		NetworkTable motionTable = NetworkTableInstance.getDefault().getTable("motion");
+		int length = (int)motionTable.getEntry("pathLength").getDouble(0);
 		
 		double[] points = new double[((length * 2 + 254) / 255) * 255];
 		for (int i = 0; i < (length * 2 + 254) / 255; i++){
-			System.arraycopy(motionTable.getNumberArray(NT_PATH + i, new double[255]), 0, points, i * 255, 255);
+			System.arraycopy(motionTable.getEntry(NT_PATH + i).getDoubleArray(new double[255]), 0, points, i * 255, 255);
 		}
 		MotionEnv env = new MotionEnv();
 		if (length != 0){

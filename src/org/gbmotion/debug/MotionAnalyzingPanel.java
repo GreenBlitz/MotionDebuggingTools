@@ -1,4 +1,4 @@
-package com.gbmotion.debug;
+package org.gbmotion.debug;
 
 import java.awt.Font;
 import java.awt.event.KeyEvent;
@@ -23,8 +23,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class MotionAnalyzingPanel extends JPanel {

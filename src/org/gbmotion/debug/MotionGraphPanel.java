@@ -1,4 +1,4 @@
-package com.gbmotion.debug;
+package org.gbmotion.debug;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
