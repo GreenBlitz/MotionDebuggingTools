@@ -436,7 +436,6 @@ public class MotionAnalyzingPanel extends JPanel {
 	}
 
 	protected void gotoPage(int page) {
-		System.out.println("kk");
 		if (page < m_profiles.size() && page >= 0) {
 			setPage(page);
 		}

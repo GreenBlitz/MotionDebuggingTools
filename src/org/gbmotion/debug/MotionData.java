@@ -3,6 +3,7 @@ package org.gbmotion.debug;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
+import java.net.NetworkInterface;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,10 +18,21 @@ public class MotionData {
 	public MotionData(){
 		m_profiles = new LinkedList<>();
 	}
-	
+
 	public void run(int width, int height){
-		NetworkTableInstance.getDefault().setServerTeam(4590);
-		
+		NetworkTableInstance.getDefault().startClientTeam(4590);
+		//NetworkTableInstance.getDefault().startClient("10.45.90.2");
+		//NetworkTableInstance.getDefault().startDSClient();
+
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException ignored) {
+		}
+		if (!NetworkTableInstance.getDefault().isConnected()) {
+			System.err.println("Error: Connection to robot could not be formed!");
+			return;
+		}
+
 		MotionAnalyzingPanel panel = new MotionAnalyzingPanel();
 		panel.setSize(width - 2, height - 30);
 		JFrame frame = new JFrame();
@@ -32,7 +44,7 @@ public class MotionData {
 		frame.setContentPane(panel);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.pack();
-		
+
 		frame.setVisible(true);
 		NetworkTable motionTable = NetworkTableInstance.getDefault().getTable("motion");
 		while (true){
@@ -50,7 +62,7 @@ public class MotionData {
 				
 				panel.update();
 			}
-			
+
 			frame.repaint();
 		}
 	}

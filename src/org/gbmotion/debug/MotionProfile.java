@@ -9,8 +9,8 @@ public class MotionProfile {
 								NT_Y 				= "y",
 								NT_ANGLE 			= "heading",
 								NT_POINT_IDX 		= "pointIndex",
-								NT_ENCODER_LEFT 	= "encoderLeft",
-								NT_ENCODER_RIGHT 	= "encoderRight",
+								NT_ENCODER_LEFT		= "encoderLeft",
+								NT_ENCODER_RIGHT	= "encoderRight",
 								NT_MOTOR_LEFT 		= "motorLeft",
 								NT_MOTOR_RIGHT 		= "motorRight",
 								NT_GYRO_ANGLE 		= "gyroHeading";
@@ -31,7 +31,7 @@ public class MotionProfile {
 	}
 	
 	public static final MotionProfile fromNetworkTables(){
-		NetworkTable localizerTable = NetworkTableInstance.getDefault().getTable("motion)").getSubTable("localizer");
+		NetworkTable localizerTable = NetworkTableInstance.getDefault().getTable("motion").getSubTable("localizer");
 		double x = localizerTable.getEntry(NT_X).getDouble(0);
 		double y = localizerTable.getEntry(NT_Y).getDouble(0);
 		double encLeft = localizerTable.getEntry(NT_ENCODER_LEFT).getDouble(0);
