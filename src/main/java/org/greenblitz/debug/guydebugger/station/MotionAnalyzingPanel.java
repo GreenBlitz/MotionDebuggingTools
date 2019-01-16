@@ -1,4 +1,4 @@
-package org.greenblitz.debug;
+package org.greenblitz.debug.guydebugger.station;
 
 import java.awt.Font;
 import java.awt.event.KeyEvent;
@@ -34,9 +34,11 @@ public class MotionAnalyzingPanel extends JPanel {
 
 	private JTextField frameData;
 	private JLabel frameData_outOf;
-	private JLabel locX, locY, locAngle, gyroAngle, encLeft, encRight, motorLeft, motorRight;
+	private JLabel locX;
+    private JLabel locY;
+    private JLabel locAngle;
 
-	public MotionPanel panel;
+    public MotionPanel panel;
 
 	public MotionEnv m_env;
 
@@ -228,8 +230,7 @@ public class MotionAnalyzingPanel extends JPanel {
 		
 		resetData.setSize(70, 30);
 		resetData.setText("Reset");
-		
-		
+
 		add(importData);
 		add(exportData);
 		add(resetData);
@@ -237,32 +238,15 @@ public class MotionAnalyzingPanel extends JPanel {
 		locX = new JLabel("X:----");
 		locY = new JLabel("Y:----");
 		locAngle = new JLabel("Angle:----");
-		gyroAngle = new JLabel("Gyro Angle:----");
-		encLeft = new JLabel("Encoder Left:----");
-		encRight = new JLabel("Encoder Right:----");
-		motorLeft = new JLabel("Motor Left:----");
-		motorRight = new JLabel("Motor Right:----");
 	
 		locX.setLocation(10, 10);
 		locY.setLocation(10, 40);
 		locAngle.setLocation(10, 70);
-		gyroAngle.setLocation(10, 100);
-		encLeft.setLocation(10, 130);
-		encRight.setLocation(10, 160);
-		motorLeft.setLocation(10, 190);
-		motorRight.setLocation(10, 220);
-		
+
 		locX.setSize(200, 30);
 		locY.setSize(200, 30);
 		locAngle.setSize(250, 30);
-		gyroAngle.setSize(250, 30);
-		encLeft.setSize(200, 30);
-		encRight.setSize(200, 30);
-		motorLeft.setSize(200, 30);
-		motorRight.setSize(200, 30);
-		
-		
-	
+
 		frameData.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -288,11 +272,6 @@ public class MotionAnalyzingPanel extends JPanel {
 		add(locX);
 		add(locY);
 		add(locAngle);
-		add(gyroAngle);
-		add(encLeft);
-		add(encRight);
-		add(motorLeft);
-		add(motorRight);
 		add(panel);
 		add(frameData_outOf);
 	}
@@ -307,7 +286,6 @@ public class MotionAnalyzingPanel extends JPanel {
 			try {
 				setData(chooser.getSelectedFile());
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -426,11 +404,6 @@ public class MotionAnalyzingPanel extends JPanel {
 			locX.setText("X:" + format.format(m_profiles.get(m_pageNum).m_x));
 			locY.setText("Y:" + format.format(m_profiles.get(m_pageNum).m_y));
 			locAngle.setText("Angle:" + format.format(m_profiles.get(m_pageNum).m_angle * 180 / Math.PI) + "deg");
-			gyroAngle.setText("Gyro Angle:" + format.format(m_profiles.get(m_pageNum).m_gyroAngle * 180 / Math.PI) + "deg");
-			encLeft.setText("Encoder Left:" + format.format(m_profiles.get(m_pageNum).m_encL));
-			encRight.setText("Encoder Right:" + format.format(m_profiles.get(m_pageNum).m_encR));
-			motorLeft.setText("Motor Left:" + format.format(m_profiles.get(m_pageNum).m_motorL));
-			motorRight.setText("Motor Right:" + format.format(m_profiles.get(m_pageNum).m_motorR));
 		}
 	
 	}

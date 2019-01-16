@@ -1,4 +1,4 @@
-package org.greenblitz.debug;
+package org.greenblitz.debug.guydebugger.station;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -18,9 +18,7 @@ public class MotionPanel extends JPanel {
 	protected MotionProfile m_profile;
 	protected MotionEnv m_env;
 	protected List<Double> m_robotPoints = new LinkedList<>();
-	
-	
-	
+
 	protected Color m_pathPointColor = Color.black;
 	protected int m_pathPointRadius = 6;
 	protected Color m_robotColor = Color.blue;
@@ -65,7 +63,6 @@ public class MotionPanel extends JPanel {
 
 		double minX = m_env.m_minX - rawLengthX * (m_env.m_mulOffX - 1);
 		double minY = m_env.m_minY - rawLengthY * (m_env.m_mulOffY - 1);
-		
 
 		double lengthX = rawLengthX * (m_env.m_mulOffX * 2 - 1);
 		double lengthY = rawLengthY * (m_env.m_mulOffY * 2 - 1);
@@ -78,9 +75,7 @@ public class MotionPanel extends JPanel {
 	}
 
 	private void paintProfile(Graphics g) {
-		
-	
-		//draw robot
+		//draw station
 		g.setColor(m_robotColor);
 		Point robotPoint = getPoint(m_profile.m_x, m_profile.m_y);
 		double robX = robotPoint.x;
@@ -94,12 +89,10 @@ public class MotionPanel extends JPanel {
 	    		new Rectangle2D.Double(robX - sizeX / 2, robY - sizeY / 2, sizeX, sizeY);
 
 	    g2d.rotate(m_profile.m_angle,  rect2.x + rect2.width/2, rect2.y + rect2.height/2);
-	  //  g2d.draw(rect2);
+
 	    g2d.fill(rect2);
 	    g2d.dispose();
-		
-	//    g2d.rotate(-m_profile.m_angle);
-		//draw line from robot to currentPoint
+		/*
 		if (m_profile.m_pointIdx != -1 && m_env.m_points.size() != 0){
 			double ptX = m_env.m_points.get(m_profile.m_pointIdx * 2);
 			double ptY = m_env.m_points.get(m_profile.m_pointIdx * 2 + 1);
@@ -111,9 +104,9 @@ public class MotionPanel extends JPanel {
 			g.setColor(m_selectedPointColor);
 			int diff =(m_selectedPointRadius - m_pathPointRadius) / 2;
 			((Graphics2D)g).fill(new Ellipse2D.Double(selectedPoint.x - diff, selectedPoint.y - diff, m_selectedPointRadius, m_selectedPointRadius));
-		}
+		}*/
 		
-		//draw robot past path
+		//draw station past path
 		g.setColor(m_pastPathColor);
 		List<Double> cpy = new LinkedList<>();
 		synchronized (m_robotPoints){

@@ -1,4 +1,4 @@
-package org.greenblitz.debug;
+package org.greenblitz.debug.guydebugger.station;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 
@@ -22,22 +22,22 @@ public class NTConnectionResolver {
     }
 
     private static boolean resolveTeamNumber(int teamNumber) {
-        System.out.printf("Trying to find robot using team number (%d) ...\n", teamNumber);
+        System.out.printf("Trying to find station using team number (%d) ...\n", teamNumber);
         NetworkTableInstance.getDefault().startClientTeam(teamNumber);
         waitFor();
         if (!NetworkTableInstance.getDefault().isConnected()) {
-            System.err.println("Could not find robot with team number!");
+            System.err.println("Could not find station with team number!");
             return false;
         }
         return true;
     }
 
     private static boolean resolveDS() {
-        System.out.println("Trying to find robot using DriverStation ...");
+        System.out.println("Trying to find station using DriverStation ...");
         NetworkTableInstance.getDefault().startDSClient();
         waitFor();
         if (!NetworkTableInstance.getDefault().isConnected()) {
-            System.err.println("Could not find robot with DriverStation!");
+            System.err.println("Could not find station with DriverStation!");
             return false;
         }
         return true;
@@ -51,13 +51,13 @@ public class NTConnectionResolver {
 
     private static boolean resolveIPAddresses(String... ipaddrs) {
         for (String addr : ipaddrs) {
-            System.out.printf("Trying to find robot using IP address (%s) ...\n", addr);
+            System.out.printf("Trying to find station using IP address (%s) ...\n", addr);
             if (resolveIPAddress(addr)) {
                 return true;
             }
         }
 
-        System.err.printf("Could not find robot Using IP addresses (%s)!\n", Arrays.toString(ipaddrs));
+        System.err.printf("Could not find station Using IP addresses (%s)!\n", Arrays.toString(ipaddrs));
         return false;
     }
 

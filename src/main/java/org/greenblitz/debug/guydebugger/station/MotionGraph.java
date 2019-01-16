@@ -1,4 +1,4 @@
-package org.greenblitz.debug;
+package org.greenblitz.debug.guydebugger.station;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -64,12 +64,8 @@ public class MotionGraph extends JPanel{
 
 		}
 		g2.setStroke(curStroke);
-		
-		
 	}
-	
-	
-	
+
 	protected void addPoint(double x, double y){
 		m_points.add(x);
 		m_points.add(y);

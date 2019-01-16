@@ -1,4 +1,4 @@
-package org.greenblitz.debug;
+package org.greenblitz.debug.guydebugger.station;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -25,8 +25,6 @@ public class MotionGraphPanel extends JPanel {
 	private JLabel labelMinX, labelMinY, labelMaxX, labelMaxY;
 	
 	private JButton setDomain;
-	
-
 	
 	public MotionGraphPanel(BiConsumer<MotionGraph, MotionProfile> onUpdate) {
 		try {

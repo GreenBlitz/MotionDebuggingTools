@@ -1,8 +1,5 @@
-package org.greenblitz.debug;
+package org.greenblitz.debug.guydebugger.station;
 
-
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableInstance;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -16,8 +13,7 @@ public class MotionEnv {
 	public double m_minX = Double.MAX_VALUE, m_minY = Double.MAX_VALUE, m_maxX = Double.MIN_VALUE, m_maxY = Double.MIN_VALUE;
 	
 	public boolean isDomainForced = false;
-	
-	private static String NT_PATH = "path";
+
 	public MotionEnv(){
 		m_points = new LinkedList<>();
 	}
@@ -38,22 +34,7 @@ public class MotionEnv {
 	}
 	
 	public static MotionEnv fromNetworkTable(){
-		NetworkTable motionTable = NetworkTableInstance.getDefault().getTable("motion");
-		int length = (int)motionTable.getEntry("pathLength").getDouble(0);
-		
-		double[] points = new double[((length * 2 + 254) / 255) * 255];
-		for (int i = 0; i < (length * 2 + 254) / 255; i++){
-			System.arraycopy(motionTable.getEntry(NT_PATH + i).getDoubleArray(new double[255]), 0, points, i * 255, 255);
-		}
-		MotionEnv env = new MotionEnv();
-		if (length != 0){
-			int diff = points.length - length * 2;
-			for (int i = points.length/2 - diff/2 ; i >= 0; i--){
-				System.out.println(points[2 * i + 1] + ":" + points[2 * i]);
-				env.addPoint(points[2 * i + 1], points[2 * i]);
-			}
-		}
-		return env;
+		return new MotionEnv();
 		
 	}
 	
