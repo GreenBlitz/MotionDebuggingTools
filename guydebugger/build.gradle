@@ -1,0 +1,42 @@
+plugins {
+	id "java"
+	id "edu.wpi.first.GradleRIO" version "2018.06.21"
+	id "application"
+}
+
+mainClassName = "org.greenblitz.debug.guydebugger.station.GuydeBuggerRunner"
+version = '1.1'
+
+repositories {
+	jcenter()
+	mavenCentral()
+}
+
+dependencies {
+    
+	def ntcoreVersion 	= "4.0.0"
+	def wpiutilVersion 	= "3.0.0"
+	
+	def ntcore	= "edu.wpi.first.ntcore"
+	def wpiutil	= "edu.wpi.first.wpiutil"
+
+	def ntcoreJniAll = 'edu.wpi.first.ntcore:ntcore-jni:4.0.0:all'
+	
+	compile group: ntcore, name: 'ntcore-java', version: ntcoreVersion
+	compile ntcoreJniAll
+	nativeDesktopZip ntcoreJniAll
+
+	compile group: wpiutil, name: 'wpiutil-java', version: wpiutilVersion
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'GuydeBugger',
+                'Implementation-Version': version,
+                'Main-Class': mainClassName
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
