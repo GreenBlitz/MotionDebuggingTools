@@ -12,7 +12,7 @@ public class GBGrapher {
         new FileGrapher(path).draw();
     }
 
-    public static void run(String[] args) {
+    public static void main(String[] args) {
         File file;
 
         if (args.length == 0) {
@@ -45,9 +45,5 @@ public class GBGrapher {
         } catch (InvalidCSVFileException e) {
             System.err.println("csv file is malformed, at" + file.getAbsolutePath());
         }
-    }
-
-    public static void main(String[] args) {
-        GBGrapher.run(args);
     }
 }

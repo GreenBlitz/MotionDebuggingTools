@@ -79,7 +79,7 @@ public class NTConnectionResolver {
         var ret = resolveRobotConnection(DEFAULT_TEAM_NUMBER, DEFAULT_IP_ADDRESSES);
         if (!ret) {
             System.err.println("----------------------------------------");
-            System.err.println("### Connection to station could not be formed! ###");
+            System.err.println("### Connection to robot could not be formed! ###");
         }
         return ret;
     }
