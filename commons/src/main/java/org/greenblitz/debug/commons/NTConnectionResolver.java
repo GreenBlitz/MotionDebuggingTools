@@ -1,4 +1,4 @@
-package org.greenblitz.debug.guydebugger.station;
+package org.greenblitz.debug.commons;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 
@@ -9,6 +9,8 @@ public class NTConnectionResolver {
     public static final long CONNECTION_TIMEOUT = 1000L;
     public static final int DEFAULT_TEAM_NUMBER = 4590;
     public static final String[] DEFAULT_IP_ADDRESSES = { "10.45.90.2", "172.22.11.2" };
+
+    public static final String DNS_FORMAT = "roboRIO-%d-frc.local";
 
     private static void waitFor(long timeout) {
         try {
@@ -61,7 +63,7 @@ public class NTConnectionResolver {
         return false;
     }
 
-    private static boolean resolveRobotConnection(int teamNumber, String... ipaddrs) {
+    public static boolean resolveRobotConnection(int teamNumber, String... ipaddrs) {
         if (resolveTeamNumber(teamNumber)) {
             return true;
         }
@@ -74,7 +76,11 @@ public class NTConnectionResolver {
     }
 
     public static boolean resolveRobotConnection() {
-        return resolveRobotConnection(DEFAULT_TEAM_NUMBER, DEFAULT_IP_ADDRESSES);
+        var ret = resolveRobotConnection(DEFAULT_TEAM_NUMBER, DEFAULT_IP_ADDRESSES);
+        if (!ret) {
+            System.err.println("----------------------------------------");
+            System.err.println("### Connection to station could not be formed! ###");
+        }
+        return ret;
     }
-
 }

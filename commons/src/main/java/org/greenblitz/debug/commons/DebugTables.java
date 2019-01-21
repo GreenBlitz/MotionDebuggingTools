@@ -1,4 +1,4 @@
-package org.greenblitz.debug.guydebugger.common;
+package org.greenblitz.debug.commons;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;

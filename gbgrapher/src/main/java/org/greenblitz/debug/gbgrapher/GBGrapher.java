@@ -1,6 +1,7 @@
 package org.greenblitz.debug.gbgrapher;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +20,8 @@ public class GBGrapher {
             frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
             var chooser = new JFileChooser(".");
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("data files", "csv");
+            chooser.setFileFilter(filter);
             var option = chooser.showOpenDialog(frame);
 
             if (option != JFileChooser.APPROVE_OPTION) {
@@ -29,6 +32,10 @@ public class GBGrapher {
             file = chooser.getSelectedFile();
         } else {
             file = new File(args[0]);
+            if (!file.getName().endsWith(".csv")) {
+                System.err.println("Only csv files are accepted!");
+                return;
+            }
         }
 
         try {
@@ -36,7 +43,7 @@ public class GBGrapher {
         } catch (IOException e) {
             System.err.println("Could not find file " + file.getAbsolutePath());
         } catch (InvalidCSVFileException e) {
-            System.err.println("csv file is malformed " + file.getAbsolutePath());
+            System.err.println("csv file is malformed, at" + file.getAbsolutePath());
         }
     }
 

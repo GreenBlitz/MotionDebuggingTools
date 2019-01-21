@@ -13,7 +13,6 @@ repositories {
 }
 
 dependencies {
-    
 	def ntcoreVersion 	= "4.0.0"
 	def wpiutilVersion 	= "3.0.0"
 	
@@ -27,6 +26,8 @@ dependencies {
 	nativeDesktopZip ntcoreJniAll
 
 	compile group: wpiutil, name: 'wpiutil-java', version: wpiutilVersion
+
+    compile project(':commons')
 }
 
 task fatJar(type: Jar) {

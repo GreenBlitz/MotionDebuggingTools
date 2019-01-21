@@ -2,6 +2,7 @@ package org.greenblitz.debug.guydebugger.common;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
+import org.greenblitz.debug.commons.DebugTables;
 
 public class GuydeBuggerTables {
     public static final NetworkTable GUYDEBUGGER_TABLE = DebugTables.DEBUG_TABLE.getSubTable("guydebugger");

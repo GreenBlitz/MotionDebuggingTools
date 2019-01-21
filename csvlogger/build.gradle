@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    id 'application'
+    id "edu.wpi.first.GradleRIO" version "2018.06.21"
+}
+
+version = 1.0
+mainClassName = "org.greenblitz.debug.csvlogger.station.CSVLoggerRunner"
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    def ntcoreVersion 	= "4.0.0"
+    def wpiutilVersion 	= "3.0.0"
+
+    def ntcore	= "edu.wpi.first.ntcore"
+    def wpiutil	= "edu.wpi.first.wpiutil"
+
+    def ntcoreJniAll = 'edu.wpi.first.ntcore:ntcore-jni:4.0.0:all'
+
+    compile group: ntcore, name: 'ntcore-java', version: ntcoreVersion
+    compile ntcoreJniAll
+    nativeDesktopZip ntcoreJniAll
+
+    compile group: wpiutil, name: 'wpiutil-java', version: wpiutilVersion
+
+    compile group: 'org.apache.commons', name: 'commons-csv', version: '1.6'
+
+    compile project(':commons')
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': project.name,
+                'Implementation-Version': version,
+                'Main-Class': mainClassName
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+

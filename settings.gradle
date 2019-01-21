@@ -1,2 +1,5 @@
 rootProject.name = 'MotionDebuggingTools'
 include 'guydebugger', 'gbgrapher'
+include 'csvlogger'
+include 'commons'
+
