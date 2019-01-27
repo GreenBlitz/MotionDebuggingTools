@@ -5,6 +5,7 @@ import org.greenblitz.debug.csvlogger.common.exception.DirectoryCreationExceptio
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ public class TableHandler {
     }
 
     public static void init() throws DirectoryCreationException {
-        defaultHandler = new TableHandler(NT_ROOT_TABLE, NetworkTableInstance.getDefault().getTable(NT_ROOT_TABLE));
+        defaultHandler = new TableHandler(NT_ROOT_NAME, ROOT);
     }
 
 
@@ -53,7 +54,7 @@ public class TableHandler {
     }
 
     private void addHandler(String key, String[] names) {
-        System.out.println("Entry '" + key + "' was added to the logger's watch!");
+        System.out.printf("Entry '%s':%s was added to the logger's watch!\n", key, Arrays.toString(names));
         var valuesEntry = m_values.getEntry(key);
         try {
             File dest = m_dir.toPath().resolve(key + ".csv").toFile();
