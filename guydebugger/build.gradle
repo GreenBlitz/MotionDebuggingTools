@@ -12,6 +12,8 @@ repositories {
 	mavenCentral()
 }
 
+def includeDesktopSupport = true
+
 dependencies {
 	def ntcoreVersion 	= "4.0.0"
 	def wpiutilVersion 	= "3.0.0"
