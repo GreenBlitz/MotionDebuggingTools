@@ -9,5 +9,5 @@ public class CSVLoggerTables {
     public static final String NT_NAMES_TABLE = "names";
     public static final String NT_VALUES_TABLE = "values";
 
-    public static final NetworkTable ROOT = DebugTables .DEBUG.getSubTable(NT_ROOT_NAME);
+    public static final NetworkTable ROOT = DebugTables.DEBUG.getSubTable(NT_ROOT_NAME);
 }
